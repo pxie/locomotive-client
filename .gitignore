@@ -1,0 +1,8 @@
+mktforms
+.~lock*
+/.DS_Store
+/target/
+.project
+.classpath
+.settings
+/bin/dir ~/.m2/repository/com/ge/predix/training/timeseries-datasimulator-archetype/1.0.0/
