@@ -86,13 +86,16 @@ public class TimeseriesServiceImpl implements EnvironmentAware {
 		String proxyPort = null;
 
 		List<Header> headers = this.rest.getOauthHttpHeaders(this.predix_oauthClientId, oauthClientIdEncode);
+		//Request Token fro UAA
 		String tokenString = this.rest.requestToken(headers, oauthResource, this.predix_oauthRestHost, oauthPort, this.predix_oauthGrantType,
 				proxyHost, proxyPort);
 
 		log.debug("TOKEN = " + tokenString);
 
+		//Token is stored as a JSON object
 		JSONObject token = new JSONObject(tokenString);
 
+		//Store Access_token part of the token
 		String authorization = "Bearer " + token.getString("access_token");
 
 		if (tag.equalsIgnoreCase("tags")) {
@@ -158,6 +161,8 @@ public class TimeseriesServiceImpl implements EnvironmentAware {
 		RestTemplate restTemplate = new RestTemplate();
 
 		HttpHeaders headers = new HttpHeaders();
+		//Add required Headers for the time series query 
+		//Zone-ID, Bearer Token and JSON content Type
 		headers.add("Predix-Zone-Id", this.timeseriesZone);
 		headers.add("Authorization", authorization);
 		headers.add("Content-Type", "application/json");
@@ -359,6 +364,7 @@ public class TimeseriesServiceImpl implements EnvironmentAware {
 	
 	@Override
 	public void setEnvironment(Environment env) {
+		//Pull from the environment variables the UAA URL, Client ID and client secret
 		this.predix_oauthRestHost = env.getProperty("predix_oauthRestHost");
 		this.predix_oauthClientId = env.getProperty("predix_oauthClientId");		
 		this.predix_oauthGrantType = env.getProperty("predix_oauthGrantType");
