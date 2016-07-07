@@ -28,6 +28,7 @@ public class TimeseriesServiceController {
 		
 	static String authToken ;
 	
+	//Request Mappings for the different allowed queries
 	@RequestMapping(value = "/locomotive/tags", method = RequestMethod.GET)
 	public String retrieveTags() {
 
@@ -49,7 +50,7 @@ public class TimeseriesServiceController {
 		return timeSeriesDataPoints;
 	}
 	
-	
+	//Request Mapping for getting latest data with acs implementation
 	@RequestMapping(value = "/locomotive/acslatest", method = { RequestMethod.GET, RequestMethod.POST })
 	public String retrieveLatest(@RequestParam("id") String id,
 			@RequestParam(value = "username", required = true) String username,
@@ -65,6 +66,7 @@ public class TimeseriesServiceController {
 		return timeSeriesLatestDataPoints;
 	}
 	
+	//Request Mapping to get latest data
 	@RequestMapping(value = "/locomotive/latest", method = { RequestMethod.GET, RequestMethod.POST })
 	public String retrieveLatest(@RequestParam("id") String id,
 			@RequestParam(value = "username", required = true) String username
@@ -82,6 +84,8 @@ public class TimeseriesServiceController {
 	
 	
 	//------------------------------------------ACS -----------------------------------------
+	//Validate user method that uses ACS
+	//---------------------------------------------------------------------------------------
 	
 	@SuppressWarnings("nls")
     @RequestMapping(value = "/validateuser", method = { RequestMethod.GET, RequestMethod.POST })
