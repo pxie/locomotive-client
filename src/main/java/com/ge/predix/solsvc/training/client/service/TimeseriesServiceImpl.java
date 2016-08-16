@@ -59,7 +59,6 @@ public class TimeseriesServiceImpl implements EnvironmentAware {
 	@Value("${predix_oauthRestHost}")
 	String predix_oauthRestHost;
 	
-	@Value("${predix_oauthClientId}")
 	String predix_oauthClientId;
 	
 	@Value("${predix_oauthGrantType}")
@@ -85,7 +84,7 @@ public class TimeseriesServiceImpl implements EnvironmentAware {
 		String proxyHost = null;
 		String proxyPort = null;
 
-		List<Header> headers = this.rest.getOauthHttpHeaders(this.predix_oauthClientId, oauthClientIdEncode);
+		List<Header> headers = this.rest.getOauthHttpHeaders(this.clientId + ":" + this.clientSecret, oauthClientIdEncode);
 		//Request Token fro UAA
 		String tokenString = this.rest.requestToken(headers, oauthResource, this.predix_oauthRestHost, oauthPort, this.predix_oauthGrantType,
 				proxyHost, proxyPort);
@@ -343,7 +342,7 @@ public class TimeseriesServiceImpl implements EnvironmentAware {
 				String oauthResource = "/oauth/token";
 				String proxyHost = null;
 				String proxyPort = null;
-				String oauthClientId = this.predix_oauthClientId;
+				String oauthClientId = this.clientId + ":" + this.clientSecret;
 				String oauthHost = this.predix_oauthRestHost;
 
 				List<Header> headers = this.rest.getOauthHttpHeaders(oauthClientId, oauthClientIdEncode);
@@ -366,7 +365,7 @@ public class TimeseriesServiceImpl implements EnvironmentAware {
 	public void setEnvironment(Environment env) {
 		//Pull from the environment variables the UAA URL, Client ID and client secret
 		this.predix_oauthRestHost = env.getProperty("predix_oauthRestHost");
-		this.predix_oauthClientId = env.getProperty("predix_oauthClientId");		
+		this.predix_oauthClientId = env.getProperty("clientId") + env.getProperty("clientSecret") ;		
 		this.predix_oauthGrantType = env.getProperty("predix_oauthGrantType");
 		this.accessTokenEndpointUrl = env.getProperty("accessTokenEndpointUrl");
 		this.clientId = env.getProperty("clientId");
