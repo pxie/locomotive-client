@@ -1,14 +1,14 @@
 ---
 applications:
-  - name: dss-locomotive-client-service
+  - name: <yourname>-locomotive-client-service
     buildpack: java_buildpack
     path: target/client-0.0.1-SNAPSHOT.jar #make sure this matches the artifactID and version in the pom.xml
  
 env:
     SPRING_PROFILES_ACTIVE : clouddev
-    accessTokenEndpointUrl : https://b4fa73da-7f3f-44bf-9ccb-620edc4b5045.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
-    clientId : client
-    clientSecret: clientSecret
-    acsServiceInstanceName : dss-acs
+    accessTokenEndpointUrl : https://<uaa_zone_id>.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
+    clientId : <your_client>
+    clientSecret: <your_client_secret>
+    acsServiceInstanceName : <your_acs_name>
     acsUri : https://predix-acs.run.aws-usw02-pr.ice.predix.io
  
