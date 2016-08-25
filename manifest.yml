@@ -10,5 +10,5 @@ env:
     clientId : <your_client>
     clientSecret: <your_client_secret>
     acsServiceInstanceName : <your_acs_name>
-    acsUri : https://predix-acs.run.aws-usw02-pr.ice.predix.io
+    acsUri: https://predix-acs-training.run.aws-usw02-pr.ice.predix.io
  
