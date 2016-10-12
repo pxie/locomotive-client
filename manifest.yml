@@ -1,14 +1,14 @@
 ---
 applications:
-  - name: <yourname>-locomotive-client-service
+  - name: pxie-locomotive-client-service
     buildpack: java_buildpack
     path: target/client-0.0.1-SNAPSHOT.jar #make sure this matches the artifactID and version in the pom.xml
  
 env:
     SPRING_PROFILES_ACTIVE : clouddev
-    accessTokenEndpointUrl : https://<uaa_zone_id>.predix-uaa-training.run.aws-usw02-pr.ice.predix.io/oauth/token
-    clientId : <your_client>
-    clientSecret: <your_client_secret>
-    acsServiceInstanceName : <your_acs_name>
+    accessTokenEndpointUrl : https://b56e1672-2d0c-4f45-bc1e-8474aa298731.predix-uaa-training.run.aws-usw02-pr.ice.predix.io/oauth/token
+    clientId : pxie-client
+    clientSecret: client_secret
+    acsServiceInstanceName : pxie-acs
     acsUri: https://predix-acs-training.run.aws-usw02-pr.ice.predix.io
  
